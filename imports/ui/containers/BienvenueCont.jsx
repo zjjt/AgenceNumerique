@@ -26,8 +26,8 @@ export  class BienvenueCont extends Component{
 					<span className="homespan">NSIA Vie Assurances<br/><Translate value="application.Bienvenue.welcome"/></span>
 					<span className="homespan-child"><br/><br/><Translate value="application.Bienvenue.clignotext"/></span>
 					<div className="languageBox">
-						<LanguageBox handleclik={()=>this.props.dispatch(changeLangue('fr'))} language="fr" image="/img/fr.png"/>
-						<LanguageBox handleclik={()=>this.props.dispatch(changeLangue('en'))} language="en" image="/img/en.png"/>
+						<LanguageBox handleclik={()=>this.props.dispatch(changeLangue('fr'))} language="fr" classes=" fadeInLeft" image="/img/fr.png"/>
+						<LanguageBox handleclik={()=>this.props.dispatch(changeLangue('en'))} language="en" classes=" fadeInRight" image="/img/en.png"/>
 					</div>
 					
 				</section>
