@@ -12,6 +12,7 @@
     "react-dom": "^15.1.0",
     "react-mounter": "^1.2.0",
     "react-redux": "^4.4.5",
+    "react-redux-i18n": "0.0.3",
     "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.5.2",
     "redux-form": "^5.2.5",

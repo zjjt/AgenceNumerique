@@ -26,7 +26,7 @@ class AlternateLoginCont extends Component {
 					isVisiblePrev={true}
 					isVisibleNext={true}
 					isVisibleDeco={false}
-					textInfo={'www.groupesnsia.com'}
+					textInfo={'www.groupensia.com'}
 					textNext={'Valider '}
 					textPrev={'Retour'}
 				/>

@@ -4,6 +4,8 @@ import {logoclicked} from '../../redux/actions/admin-actions';
 import {connect} from 'react-redux';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
+import {Translate,Localize,I18n} from 'react-redux-i18n';
+
 
 
 export default class BienvenueCont extends Component{
@@ -17,8 +19,8 @@ export default class BienvenueCont extends Component{
 				<Header background="withback" logoInvisible={false} logoclicking={()=>this.props.dispatch(logoclicked())}/>
 
 				<section className="mainContent animated zoomIn" style={style}>
-					<span className="homespan">NSIA Vie Assurances<br/>Vous souhaite la bienvenue</span>
-					<span className="homespan-child"><br/><br/> Appuyer sur le boutton pour commencer</span>
+					<span className="homespan">NSIA Vie Assurances<br/><Translate value="application.Bienvenue.welcome"/></span>
+					<span className="homespan-child"><br/><br/><Translate value="application.Bienvenue.clignotext"/></span>
 				</section>
 				<Footer
 					onClickRetour={()=>alert('vialin')}
@@ -27,8 +29,8 @@ export default class BienvenueCont extends Component{
 					isVisiblePrev={false}
 					isVisibleNext={true}
 					isVisibleDeco={false}
-					textInfo={'www.groupesnsia.com'}
-					textNext={'Entree'}
+					textInfo={'www.groupensia.com'}
+					textNext={I18n.t('application.Bienvenue.naviBtnR')}
 				    textPrev={''}
 
 

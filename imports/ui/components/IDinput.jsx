@@ -1,5 +1,6 @@
 import React,{PropTypes,Component} from 'react';
 import {reduxForm} from 'redux-form';
+import {Translate,Localize,I18n} from 'react-redux-i18n';
 /*<button type="submit">OK</button>*/
 /* prevoit d'animer les pages ou il ya le formulaire pour cacher les champs qui ne sont pas
  * selectionner(focused) pour laisser apparaitre le clavier android
@@ -16,7 +17,7 @@ class IDinput extends Component{
 		}
 		return(
 			<form onSubmit={handleSubmit} className="inputsForm ">
-				<input type="text" autocomplete="off" placeholder="Veuillez entrer votre identifiant" className="animated fadeInDown" {...identifiant}/>
+				<input type="text" autocomplete="off" placeholder={I18n.t('application.Login.inputPlaceholder')} className="animated fadeInDown" {...identifiant}/>
 			</form>
 		);
 	}
@@ -24,7 +25,7 @@ class IDinput extends Component{
 function validate(values) {
 	const errors = {};
 	if (!values.identifiant || values.identifiant.trim() === '') {
-		errors.identifiant = 'Entrez votre Identifiant';
+		errors.identifiant = I18n.t('application.Login.errorVide');
 	}
 	return errors;
 

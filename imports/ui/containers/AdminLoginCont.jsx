@@ -28,7 +28,7 @@ class AdminLoginCont extends Component {
 			<div className="masterContainer">
 				<Header background="withback" logoInvisible={false}/>
 				<section className="mainContent rm-justify">
-					<span className="homespan animated zoomIn">Administrateur</span>
+					<span className="homespan animated zoomIn">Bienvenue administrateur</span>
 					<AdminInputForm listadmins={listadmins} warning={warning}/>
 						<div>{listadmins.map(T=><p key={T._id}>{T.nom}<br/>{T.password}</p>)}</div>
 				</section>
@@ -39,7 +39,7 @@ class AdminLoginCont extends Component {
 					isVisiblePrev={true}
 					isVisibleNext={true}
 					isVisibleDeco={false}
-					textInfo={'www.groupesnsia.com'}
+					textInfo={'www.groupensia.com'}
 					textNext={'Valider '}
 				    textPrev={' Quitter'}
 				/>

@@ -4,7 +4,7 @@ import Footer from '../components/Footer.jsx';
 import {NapaId} from '../../redux/actions/ui-nav-actions';
 import IDinputForm from '../components/IDinput.jsx';
 import {connect} from 'react-redux';
-
+import {Translate,Localize,I18n} from 'react-redux-i18n';
 
 class LoginPageCont extends Component {
 	componentWillMount() {
@@ -26,7 +26,7 @@ class LoginPageCont extends Component {
 			<div className="masterContainer">
 				<Header background="withback" logoInvisible={false}/>
 				<section className="mainContent" style={style}>
-					<span className="homespan animated zoomIn">Connectez vous !</span>
+					<span className="homespan animated zoomIn"><Translate value="application.Login.title"/></span>
 					<IDinputForm/>
 				</section>
 				<Footer
@@ -36,8 +36,8 @@ class LoginPageCont extends Component {
 					isVisiblePrev={false}
 					isVisibleNext={true}
 					isVisibleDeco={false}
-					textInfo={'www.groupesnsia.com'}
-					textNext={'Des soucis ? Cliquez ici '}
+					textInfo={'www.groupensia.com'}
+					textNext={I18n.t('application.Login.naviBtnR')}
 				    textPrev={''}
 				/>
 			</div>
