@@ -1,6 +1,7 @@
 import React,{PropTypes,Component} from 'react';
 import {reduxForm} from 'redux-form';
 import {Bert} from 'meteor/themeteorchef:bert';
+import {Translate,Localize,I18n} from 'react-redux-i18n';
 /*<button type="submit">OK</button>*/
 /* prevoit d'animer les pages ou il ya le formulaire pour cacher les champs qui ne sont pas
  * selectionner(focused) pour laisser apparaitre le clavier android
@@ -20,9 +21,9 @@ class ALinput extends Component{
 		}
 		return(
 			<form onSubmit={handleSubmit} className="inputsForm">
-				<input type="text" autocomplete="off" placeholder="Entrez votre nom" {...nom} className="animated slideInRight"/><br/>
-				<input type="text" autocomplete="off" placeholder="Entrez votre numéro de téléphone" className="animated slideInLeft" {...tel}/><br/>
-				<input type="text" autocomplete="off" disabled={disabled}  placeholder="Entrez votre date de naissance Ex: jj/mm/année" className="animated slideInRight" {...birthday}/>
+				<input type="text" autocomplete="off" placeholder={I18n.t('application.AltLogin.nomPlaceholder')}{...nom} className="animated slideInRight"/><br/>
+				<input type="text" autocomplete="off" placeholder={I18n.t('application.AltLogin.telPlaceholder')} className="animated slideInLeft" {...tel}/><br/>
+				<input type="text" autocomplete="off" disabled={disabled}  placeholder={I18n.t('application.AltLogin.birthPlaceholder')} className="animated slideInRight" {...birthday}/>
 			</form>
 		);
 	}
@@ -32,7 +33,7 @@ function validate(values) {
 	const errors = {};
 	const patternDate =/^([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})$/;
 	if (!values.nom || values.nom.trim() === '') {
-		errors.nom = 'N\'oubliez pas d\'entrer votre nom (réferrez vous à votre pièce d\'identité)';
+		errors.nom = I18n.t('application.AltLogin.nomErrorVide');
 
 	}
 	/*if (values.nom.length < 10) {
@@ -40,15 +41,15 @@ function validate(values) {
 	}*/
 	console.log(values.nom);
 	if (!values.tel || values.tel.trim() === '') {
-		errors.tel = 'N\'oubliez pas d\'entrer votre numero de téléphone selon le format suivant (+225 01 09 03 04)';
+		errors.tel = I18n.t('application.AltLogin.telErrorVide');
 
 	}
 	if(!values.birthday || values.birthday.trim() === '') {
-		errors.birthday = 'N\'oubliez pas d\'entrer votre date de naissance selon le format suivant (jj/mm/annee)';
+		errors.birthday = I18n.t('application.AltLogin.birthErrorVide');
 
 	}
 	if(!patternDate.test(values.birthday)){
-		errors.birthday='Veuillez entrer une date de naissance valide';
+		errors.birthday=I18n.t('application.AltLogin.birthErrorPattern');
 	}
 	return errors;
 }

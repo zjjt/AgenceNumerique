@@ -14,6 +14,13 @@ const Langues={
             },
             AltLogin:{
                 title:'Tell us about yourself',
+                nomPlaceholder:'Enter your full name',
+                telPlaceholder:'Enter your phone number',
+                birthPlaceholder:'Enter your birth date EX: day-month-year',
+                nomErrorVide:'Do not forget to provide your full name (refer to your ID card if necessary)',
+                telErrorVide:'Do not forget to provide your phone number according to this format (+225 01 09 03 04)',
+                birthErrorVide:'Do not forget to provide your birth date',
+                birthErrorPattern:'Please enter a valid date with respect to the date format required',
                 naviBtnL:'Back',
                 naviBtnR:'Log in'
             },
@@ -44,6 +51,13 @@ const Langues={
             },
             AltLogin:{
                 title:'Identifiez vous !',
+                nomPlaceholder:'Entrez votre nom complet',
+                telPlaceholder:'Entrez votre numéro de téléphone',
+                birthPlaceholder:'Entrez votre date de naissance EX: jour-mois-année',
+                nomErrorVide:'N\'oubliez pas de fournir votre nom complet (tel qu\'indiqué sur votre carte d\'identité)',
+                telErrorVide:'N\'oubliez pas de fournir votre numéro de téléphone selon le format suivant (+225 01 09 03 04)',
+                birthErrorVide:'N\'oubliez pas de fournir votre date de naissance',
+                birthErrorPattern:'Veuillez entrer une date de naisance valide selon le format requis',
                 naviBtnL:'Retour',
                 naviBtnR:'Valider'
             },

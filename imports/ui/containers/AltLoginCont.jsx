@@ -3,6 +3,7 @@ import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import {NapaId,Retour} from '../../redux/actions/ui-nav-actions';
 import AlIDinputForm from '../components/AlterLogin.jsx';
+import {Translate,Localize,I18n} from 'react-redux-i18n';
 import {connect} from 'react-redux';
 
 
@@ -15,7 +16,7 @@ class AlternateLoginCont extends Component {
 			<div className="masterContainer">
 				<Header background="withback" logoInvisible={false}/>
 				<section className="mainContent rm-justify">
-					<span className="homespan animated zoomIn">Identifiez vous !</span>
+					<span className="homespan animated zoomIn"><Translate value="application.AltLogin.title"/></span>
 					<AlIDinputForm/>
 
 				</section>
@@ -28,7 +29,7 @@ class AlternateLoginCont extends Component {
 					isVisibleDeco={false}
 					textInfo={'www.groupensia.com'}
 					textNext={'Valider '}
-					textPrev={'Retour'}
+					textPrev={' Retour'}
 				/>
 			</div>
 

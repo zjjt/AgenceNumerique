@@ -20,7 +20,6 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 kadira:flow-router
 stolinski:stylus-multi
 jagi:astronomy
-universe:i18n
 mdg:validated-method
 fortawesome:fontawesome
 check

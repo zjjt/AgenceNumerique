@@ -30,6 +30,6 @@ sagaMiddleware.run(runTimer);
 //i18n chargement des middleware 
 syncTranslationWithStore(store);
 store.dispatch(loadTranslations(Langues));
-store.dispatch(setLocale('fr'));
+store.dispatch(setLocale('en'));
 
 export default store;
