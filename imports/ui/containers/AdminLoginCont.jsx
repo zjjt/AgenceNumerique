@@ -4,7 +4,7 @@ import Footer from '../components/Footer.jsx';
 import {settings,rapport,menuAdmin,RetourDebut} from '../../redux/actions/ui-nav-actions';
 import AdminInputForm from '../components/AdminInputForm.jsx';
 import {connect} from 'react-redux';
-import Admins from '../../api/collections';
+import {Admins} from '../../api/collections';
 import {createContainer} from 'meteor/react-meteor-data';
 import {Meteor} from 'meteor/meteor';
 import {connection} from '../../redux/actions/admin-actions';

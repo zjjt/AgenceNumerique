@@ -2,9 +2,9 @@ const Langues={
     en:{
         application:{
             Bienvenue:{
-                welcome:'wish you a warm welcome',
+                welcome:'wishes you a warm welcome',
                 clignotext:'Press the button to begin',
-                naviBtnR:'Enter'
+                naviBtnR:'Start'
             },
             Login:{
                 title:'Sign in !',
