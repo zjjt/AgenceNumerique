@@ -5,6 +5,7 @@ import MainLayout from '../../ui/Layouts/MainLayout.jsx';
 import React from 'react';
 import Bienvenue from '../../ui/pages/Bienvenue.jsx';
 import LoginPage from '../../ui/pages/LoginPage.jsx';
+import AlternateLogin from '../../ui/pages/AlternateLogin.jsx';
 
 
 injectTapEventPlugin();
@@ -25,10 +26,10 @@ FlowRouter.route('/login',{
 		})
 }});
 
-/*FlowRouter.route('/login_all',{
-	name:'2ndlogin',
+FlowRouter.route('/login_alt',{
+	name:'alt-login',
 	action(){
 		mount(MainLayout,{
-			content:()=>'Ok c\'est parti pour Tedious'
+			content:()=><AlternateLogin/>
 		})
-	}});*/
+	}});
