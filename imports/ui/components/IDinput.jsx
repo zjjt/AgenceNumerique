@@ -6,18 +6,33 @@ import {reduxForm} from 'redux-form';
  *
  * */
 class IDinput extends Component{
+
 	render(){
+		let messageAide="invisible message";
 		const {handleSubmit,fields:{identifiant}}=this.props;
+		if(identifiant.touched && identifiant.error)
+		{
+			Bert.alert(identifiant.error, 'warning', 'fixed-top', 'fa-frown-o');
+		}
 		return(
-			<form onSubmit={handleSubmit} className="inputsForm">
-				<input type="text"  placeholder="Veuillez entrer votre identifiant" {...identifiant}/>
+			<form onSubmit={handleSubmit} className="inputsForm ">
+				<input type="text" placeholder="Veuillez entrer votre identifiant" className="animated fadeInDown" {...identifiant}/>
 			</form>
 		);
 	}
 }
+function validate(values) {
+	const errors = {};
+	if (!values.identifiant || values.identifiant.trim() === '') {
+		errors.identifiant = 'Entrez votre Identifiant';
+	}
+	return errors;
+
+}
 const IDinputForm=reduxForm({
 	form:'identification',
-	fields:['identifiant']
+	fields:['identifiant'],
+	validate
 })(IDinput);
 
 export default IDinputForm;

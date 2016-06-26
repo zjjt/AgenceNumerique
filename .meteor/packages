@@ -21,7 +21,14 @@ kadira:flow-router
 stolinski:stylus-multi
 jagi:astronomy
 universe:i18n
-babrahams:constellation
 mdg:validated-method
 fortawesome:fontawesome
 check
+
+themeteorchef:bert
+aldeed:simple-schema
+aldeed:collection2
+meteortoys:allthings
+react-meteor-data
+accounts-base
+accounts-password

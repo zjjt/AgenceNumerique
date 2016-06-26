@@ -11,6 +11,10 @@ export default function navigationReducer(state=initialState,actions){
 		case actions.NA_PAS_ID:
 		case actions.RETOUR_AU_DEBUT:
 		case actions.RETOUR:
+		case actions.VA_AU_DEBUT:
+		case actions.MENU_ADMIN:
+		case actions.SETTINGS:
+		case actions.RAPPORT:
 			return{
 				...state,
 				navigation:actions.navigation
