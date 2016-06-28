@@ -12,6 +12,8 @@ import MenuAdmin from '../../ui/pages/MenuAdmin.jsx';
 
 injectTapEventPlugin();
 //route de base pour afficher un message de bienvenue
+
+//userRoutes
 FlowRouter.route('/',{
 	name:'home',
 	action(){
@@ -36,7 +38,7 @@ FlowRouter.route('/login_alt',{
 		})
 	}});
 
-
+//adminRoutes
 FlowRouter.route('/adminlogin',{
 	name:'adminlogin',
 	action(){

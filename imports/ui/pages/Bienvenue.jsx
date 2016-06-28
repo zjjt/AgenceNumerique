@@ -5,7 +5,7 @@ import BienvenueCont from '../containers/BienvenueCont.jsx';
 
 export default class Bienvenue extends Component{
 	componentWillMount() {
-		$("body").addClass('skyBackground');
+		$("body").removeClass('adminBackground').addClass('skyBackground');
 
 	}
 

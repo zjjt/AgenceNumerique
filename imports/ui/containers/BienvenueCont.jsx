@@ -11,9 +11,11 @@ export default class BienvenueCont extends Component{
 		const style={
 			justifyContent:"center"
 		};
+		console.log(this.props.getState);
 		return(
 			<div className="masterContainer">
-				<Header background="withback" logoInvisible={false} logoclicking={()=>this.props.dispatch(logoclicked(1))}/>
+				<Header background="withback" logoInvisible={false} logoclicking={()=>this.props.dispatch(logoclicked(1,this.props.dispatch))}/>
+
 				<section className="mainContent animated zoomIn" style={style}>
 					<span className="homespan">NSIA Vie Assurances<br/>Vous souhaite la bienvenue</span>
 					<span className="homespan-child"><br/><br/> Appuyer sur le boutton pour commencer</span>

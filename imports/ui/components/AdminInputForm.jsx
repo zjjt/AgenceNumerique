@@ -1,5 +1,5 @@
 import React,{PropTypes,Component} from 'react';
-import {reduxForm} from 'redux-form';
+import {reduxForm,destroy,focus} from 'redux-form';
 import {Bert} from 'meteor/themeteorchef:bert';
 import {connection} from '../../redux/actions/admin-actions';
 import {menuAdmin} from '../../redux/actions/ui-nav-actions';
@@ -9,7 +9,7 @@ import {menuAdmin} from '../../redux/actions/ui-nav-actions';
  * selectionner(focused) pour laisser apparaitre le clavier android
  *
  * */
-
+var err='connection';
 
 class Admininput extends Component{
 
@@ -17,7 +17,7 @@ class Admininput extends Component{
 	render(){
 		const {listadmins,handleSubmit,fields:{nom,password}}=this.props;
 		const disabled=false;
-
+		var warning=undefined;
 
 
 		const submit=(values,dispatch)=>{
@@ -32,13 +32,15 @@ class Admininput extends Component{
 				setTimeout(()=>{
 					if(!foundName){
 						reject({nom:'Cet administrateur n\'existe pas',_error:'Connection échouée'});
+						dispatch(focus('Admin-identification','nom'));
 					}else if(!foundPassword){
 						reject({password:'Mauvais mot de passe',_error:'Connection échouée'});
+						dispatch(focus('Admin-identification','password'));
 
 					}else{
 						//appeler une action thunk pour update la database avec l'heure de connexion de l'admin
 
-						dispatch(connection(values.nom,values.password));
+						dispatch(connection(values.nom,values.password,new Date()));
 						resolve();
 						dispatch(menuAdmin('adminmenu'));
 					}
@@ -46,27 +48,26 @@ class Admininput extends Component{
 			});
 		};
 
-			console.log(this.props.error);
-		if(nom.touched && nom.error && this.props.error!=='Connection échouée'){
-			Bert.alert(nom.error, 'warning', 'fixed-top', 'fa-frown-o');
-			this.props.error='Connection';
+		//a revoir une fois le pack d'internalization installer
+		if(nom.touched && nom.error){
+			if(nom.error!=="Cet administrateur n'existe pas")
+				Bert.alert(nom.error, 'warning', 'fixed-top', 'fa-frown-o');
+			else
+				Bert.alert(nom.error, 'danger', 'fixed-top', 'fa-frown-o');
+
 		}
-		else if(nom.touched && nom.error && this.props.error==='Connection échouée'){
-			Bert.alert(nom.error, 'danger', 'fixed-top', 'fa-frown-o');
-			this.props.error='Connection';
+		else if(password.touched && password.error){
+			if(password.error!=="Mauvais mot de passe")
+				Bert.alert(password.error, 'warning', 'fixed-top', 'fa-frown-o');
+			else
+				Bert.alert(password.error, 'danger', 'fixed-top', 'fa-frown-o');
 		}
-		else if(password.touched && password.error && this.props.error!=='Connection échouée'){
-			Bert.alert(password.error, 'warning', 'fixed-top', 'fa-frown-o');
-			this.props.error='Connection';
-		}
-		else if(password.touched && password.error && this.props.error==='Connection échouée'){
-			Bert.alert(password.error, 'danger', 'fixed-top', 'fa-frown-o');
-			this.props.error='Connection';
-		}
+
+
 		return(
 			<form onSubmit={handleSubmit(submit)} className="inputsForm">
-				<input type="text"  placeholder="Entrez votre nom" className="animated slideInRight" {...nom}/><br/>
-				<input type="password"  placeholder="Entrez votre mot de passe" className="animated slideInLeft" {...password}/><br/>
+				<input type="text" autocomplete="off" placeholder="Entrez votre nom" className="animated slideInRight" {...nom}/><br/>
+				<input type="password" autocomplete="off" placeholder="Entrez votre mot de passe" className="animated slideInLeft" {...password}/><br/>
 				<input type="submit" value="OK" className="submitBtn invisibleBtn"/>
 
 			</form>
@@ -80,12 +81,15 @@ Admininput.propTypes={
 
 //client side validation function
 function validate(values,dispatch) {
+
 	const errors = {};
 	if (!values.nom || values.nom.trim() === '') {
 		errors.nom = 'N\'oubliez pas d\'entrer votre nom';
+
 	}
 	if (!values.password || values.password.trim() === '') {
 		errors.password = 'N\'oubliez pas d\'entrer votre mot de passe';
+
 	}
 	return errors;
 }

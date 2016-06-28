@@ -20,9 +20,9 @@ class ALinput extends Component{
 		}
 		return(
 			<form onSubmit={handleSubmit} className="inputsForm">
-				<input type="text"  placeholder="Entrez votre nom" {...nom} className="animated slideInRight"/><br/>
-				<input type="text"  placeholder="Entrez votre numéro de téléphone" className="animated slideInLeft" {...tel}/><br/>
-				<input type="text" disabled={disabled}  placeholder="Entrez votre date de naissance Ex: jj/mm/année" className="animated slideInRight" {...birthday}/>
+				<input type="text" autocomplete="off" placeholder="Entrez votre nom" {...nom} className="animated slideInRight"/><br/>
+				<input type="text" autocomplete="off" placeholder="Entrez votre numéro de téléphone" className="animated slideInLeft" {...tel}/><br/>
+				<input type="text" autocomplete="off" disabled={disabled}  placeholder="Entrez votre date de naissance Ex: jj/mm/année" className="animated slideInRight" {...birthday}/>
 			</form>
 		);
 	}

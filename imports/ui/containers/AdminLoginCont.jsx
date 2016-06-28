@@ -30,7 +30,7 @@ class AdminLoginCont extends Component {
 				<section className="mainContent rm-justify">
 					<span className="homespan animated zoomIn">Administrateur</span>
 					<AdminInputForm listadmins={listadmins} warning={warning}/>
-						<div>{listadmins.map(T=><p key={T._id}>{T.nom}</p>)}</div>
+						<div>{listadmins.map(T=><p key={T._id}>{T.nom}<br/>{T.password}</p>)}</div>
 				</section>
 				<Footer
 					onClickRetour={()=>dispatch(RetourDebut('home'))}

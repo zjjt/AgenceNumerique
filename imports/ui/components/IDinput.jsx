@@ -16,7 +16,7 @@ class IDinput extends Component{
 		}
 		return(
 			<form onSubmit={handleSubmit} className="inputsForm ">
-				<input type="text" placeholder="Veuillez entrer votre identifiant" className="animated fadeInDown" {...identifiant}/>
+				<input type="text" autocomplete="off" placeholder="Veuillez entrer votre identifiant" className="animated fadeInDown" {...identifiant}/>
 			</form>
 		);
 	}
