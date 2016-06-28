@@ -10,11 +10,9 @@ export default class AdminLogin extends Component{
 	}
 
 	componentDidMount() {
-		if($('.decoration').length){
-			break;
-		}else{
+		/*if(!$('.decoration').length){
 			setInterval(createDiv,1000);
-		}
+		}*/
 		//setInterval(createDiv,1000);
 	}
 	componentWillUnMount() {

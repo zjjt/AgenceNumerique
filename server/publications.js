@@ -11,16 +11,25 @@ if(Meteor.isServer){
     createdAt:new Date(),
     latestConnection:new Date()
   };
-  Admins.upsert({
+  
+  //check in db if user and password do not already exist if exist,do not insert else do shouldComponentUpdate(nextProps, nextState) 
+const adminarray=Admins.find({}).fetch();
+let found=adminarray.some((el)=>{
+  if(el.nom===terminalAdmin.nom && el.password===terminalAdmin.password)
+  return true;
+});
+if(!found){
+    Admins.insert({
     nom:terminalAdmin.nom,
     password:terminalAdmin.password,
     createdAt:terminalAdmin.createdAt,
     latestConnection:terminalAdmin.latestConnection
-  },{
-    $set:{
-      nom:terminalAdmin.nom
-    }
+  
   });
+}
+
+  
+  
 
   Meteor.publish('alladmins',()=>{
     return Admins.find({});
