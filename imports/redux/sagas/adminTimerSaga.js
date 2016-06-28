@@ -15,13 +15,15 @@ const wait=ms=>(new Promise(resolve=>{
     setTimeout(()=>resolve(),ms);    
     })
 );
+//ce timer a pour but de donner a l'administrateur de pouvoir acceder a l'administration sous un delai de 20 secondes
+//passer ce delai les efforts de l'admin sont reset et il doit reprendre a zero
 export function* runTimer(){
     const channel=yield actionChannel(actions.TIMER_START);
    let currentcount=0;
     while(yield take(channel)){
         while(true){
             const winner=yield race({
-                stopped: take('TIMER_STOP'),
+                stopped: take(actions.TIMER_STOP),
                 tick:call(wait,1000)
             });
             if(currentcount<20){
