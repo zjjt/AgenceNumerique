@@ -1,5 +1,5 @@
 import {menuAdmin,adminLogin} from './ui-nav-actions';
-import {timeofadmin} from '../reducers/admin-reducer';
+import {timerofadmin} from '../reducers/admin-reducer';
 
 export const CONNECTION='CONNECTION';
 export function connection(nom,password,time){
