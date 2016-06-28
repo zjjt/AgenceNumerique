@@ -17,16 +17,19 @@ const wait=ms=>(new Promise(resolve=>{
 );
 export function* runTimer(){
     const channel=yield actionChannel(actions.TIMER_START);
-   
+   let currentcount=0;
     while(yield take(channel)){
         while(true){
             const winner=yield race({
-                stopped: take(actions.TIMER_STOP),
+                stopped: take('TIMER_STOP'),
                 tick:call(wait,1000)
             });
-            if(!winner.stopped){
+            if(currentcount<20){
                 yield put(actions.tick());
+                 currentcount+=1;
             }else{
+                yield put(actions.stopTimer());
+                    currentcount=0;
                 break;
             }
         }

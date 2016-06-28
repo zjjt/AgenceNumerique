@@ -34,7 +34,7 @@ export default function adminReducer(state=initialState,action){
 		case actions.LOGO_CLICKED:
 			return{
 				...state,
-				countclick:state.countclick+action.changeBy
+				countclick:state.countclick+1
 			};
 		case actions.NO_MORE_CLICKS:
 			return{
@@ -49,7 +49,9 @@ export default function adminReducer(state=initialState,action){
 			case actions.TIMER_STOP:
 			return{
 				...state,
-				timerStatus:'Stopped'	
+				timerStatus:'Stopped',
+				countclick:0,
+				loginTimer:0
 			};
 			case actions.TICK:
 			return{
@@ -59,13 +61,10 @@ export default function adminReducer(state=initialState,action){
 			case actions.RESETTIMER:
 			return{
 				...state,
-				loginTimer:0
+				loginTimer:0,
+				countclick:0
 			}
 		case actions.ADMIN_LAUNCH_FAILED:
-			return{
-				...state,
-				countclick:0
-			};
 		default:
 			return state;
 	}

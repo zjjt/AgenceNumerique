@@ -20,12 +20,13 @@ export function deconnection(decotime){
 }
 
 export const LOGO_CLICKED='LOGO_CLICKED';
-export function logoclicked(changeBy,dispatch){
-	dispatch(nomoreclicks());
-	return{
-		type:LOGO_CLICKED,
-		changeBy
+export function logoclicked(){
+	return(dispatch,getState)=>{
+		console.log(getState().admin.countclick);
+		dispatch(nomoreclicks());
+		dispatch({type:LOGO_CLICKED});
 	}
+	
 }
 export const NO_MORE_CLICKS='NO_MORE_CLICKS';
 export function nomoclick(nomoclick){
@@ -36,7 +37,7 @@ export function nomoclick(nomoclick){
 }
 export function nomoreclicks(){
 	return (dispatch,getState)=>{
-		console.log(getState().admin);
+		
 		const {countclick,timerStatus}=getState().admin;
 		if(countclick===4)
 		{
@@ -56,38 +57,7 @@ export function nomoreclicks(){
 	}
 
 }
-export const TIMER_START='TIMER_START';
-export function startTimer(){
-	return{
-		type:TIMER_START,
-	};
-}
-export const TIMER_STOP='TIMER_STOP';
-export function stopTimer(){
-	return{
-		type:TIMER_STOP,
-	};
-}
-export const TICK='TICK';
-export function tick(){
-	 console.log(timerofadmin);
-	return{
-	type:TICK	
-	};
-}
-export const RESETTIMER='RESETTIMER';
-export function resetTimer(){
-	return{
-		type:RESETTIMER
-	};
-}
-export const ADMIN_LAUNCH_FAILED='ADMIN_LAUNCH_FAILED';
-export function adminlaunchFailed(){
-	return{
-			type:ADMIN_LAUNCH_FAILED,
-			
-	};
-}
+
 export function launchadmin(){
 //besoin du state du store pour voir si il y a eu 5 doubleclick
 // si oui on lance l'admin et on remet le compteur a zero et on set un flag
@@ -105,5 +75,38 @@ export function launchadmin(){
 			dispatch(adminlaunchFailed());
 		}
 
+	};
+}
+
+export const TIMER_START='TIMER_START';
+export function startTimer(){
+	return{
+		type:TIMER_START,
+	};
+}
+export const TIMER_STOP='TIMER_STOP';
+export function stopTimer(){
+	return{
+		type:TIMER_STOP,
+	};
+}
+export const TICK='TICK';
+export function tick(){
+	
+	return{
+	type:TICK	
+	};
+}
+export const RESETTIMER='RESETTIMER';
+export function resetTimer(){
+	return{
+		type:RESETTIMER
+	};
+}
+export const ADMIN_LAUNCH_FAILED='ADMIN_LAUNCH_FAILED';
+export function adminlaunchFailed(){
+	return{
+			type:ADMIN_LAUNCH_FAILED,
+			
 	};
 }

@@ -14,7 +14,7 @@ export default class BienvenueCont extends Component{
 		console.log(this.props.getState);
 		return(
 			<div className="masterContainer">
-				<Header background="withback" logoInvisible={false} logoclicking={()=>this.props.dispatch(logoclicked(1,this.props.dispatch))}/>
+				<Header background="withback" logoInvisible={false} logoclicking={()=>this.props.dispatch(logoclicked())}/>
 
 				<section className="mainContent animated zoomIn" style={style}>
 					<span className="homespan">NSIA Vie Assurances<br/>Vous souhaite la bienvenue</span>
