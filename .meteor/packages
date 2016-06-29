@@ -32,3 +32,6 @@ meteortoys:allthings
 react-meteor-data
 accounts-base
 accounts-password
+momentjs:moment
+tap:i18n
+tap:i18n-bundler
