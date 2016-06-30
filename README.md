@@ -1,2 +1,2 @@
 # AgenceNumerique
-agence numerique utilisant react redux tedious et meteor
+agence numerique utilisant react redux sequelize et meteor
