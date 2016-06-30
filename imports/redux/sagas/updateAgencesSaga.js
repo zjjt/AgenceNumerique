@@ -13,6 +13,12 @@ export function* watchchangeAgences(){
 //saga qui fait le travaille
 export function* changeAgences(getState){
     const pays=getState().settings.pays;
-    const agenceListe=yield call(agencesQuery(pays));
-    yield put(loadAgence(agenceListe));
+    try{
+        const agenceListe=yield call(agencesQuery(pays));
+        yield put(loadAgence(agenceListe));
+
+    }catch(error){
+        yield put({type:"AGENCELISTE_LOADING_FAILED",error});
+    }
+    
 }

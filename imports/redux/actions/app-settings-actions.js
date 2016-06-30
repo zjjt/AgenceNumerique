@@ -1,9 +1,21 @@
+import {setLocale} from 'react-redux-i18n';
+import {moment} from 'meteor/momentjs:moment';
+import frenchLocale from '../../api/momentjsConfig';
+import Langues from '../../api/languages';
+
 export const CHANGE_LANG='CHANGE_LANG';
 export function changeLangue(lang){
-    return{
-        type:CHANGE_LANG,
-        lang
+    console.log(lang+' clicked');
+    return(dispatch,getState)=>{
+        dispatch(setLocale(lang));
+        if(lang==='en')
+            moment.locale(lang);
+        else if(lang==='fr')
+            moment.locale(lang,frenchLocale);
+       // dispatch({type:CHANGE_LANG,lang});
     };
+    
+
 }
 
 export const DIMINUE_VOL='DIMINUE_VOL';

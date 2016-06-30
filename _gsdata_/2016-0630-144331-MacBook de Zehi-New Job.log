@@ -1,0 +1,13 @@
+2016-06-30 14:43:34: Using CONNECT proxy 10.10.4.28:8080 to connect to host mediator.goodsync.com:443
+2016-06-30 14:43:37: nsiabureau.zjjt1988.goodsync is remote, trying via forwarder at (default).(default).goodsync(205.251.75.101:80) ext-int=0
+2016-06-30 14:43:37: Using HTTP proxy 10.10.4.28:8080 to connect to host 205.251.75.101:80
+2016-06-30 14:44:01: -- Analysis Started by On File Change 1st Full Analyze
+2016-06-30 14:48:37: Arrange Connect again, 300 sec passed from previous Arrange Connect
+2016-06-30 14:48:37: Using CONNECT proxy 10.10.4.28:8080 to connect to host mediator.goodsync.com:443
+2016-06-30 14:48:57: nsiabureau.zjjt1988.goodsync is remote, trying via forwarder at (default).(default).goodsync(205.251.75.101:80) ext-int=0
+2016-06-30 14:48:57: Using HTTP proxy 10.10.4.28:8080 to connect to host 205.251.75.101:80
+2016-06-30 14:55:05: Changes: 6450, Conflicts: 0, CopyTime: 0, CopyState: 0/0, Errors: 0, All: 7705
+2016-06-30 14:55:05: Left to Right: Copy File: 6450 
+2016-06-30 14:55:10: == Sync Started by On File Change 1st Full Analyze
+2016-06-30 14:55:12: 83% (6450 / 7705) files have changed (excluding renames), more than a threshold of 50%. So the job will not synchronize automatically.
+2016-06-30 14:55:12: 

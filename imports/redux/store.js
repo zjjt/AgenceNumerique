@@ -5,7 +5,9 @@ import rootReducer from './rootReducer';
 import createSagaMiddleware from 'redux-saga';
 import {runTimer} from './sagas/adminTimerSaga';
 import {loadTranslations,setLocale,syncTranslationWithStore} from 'react-redux-i18n';
+import {moment} from 'meteor/momentjs:moment';
 import Langues from '../api/languages';
+import frenchLocale from '../api/momentjsConfig';
 
 const sagaMiddleware=createSagaMiddleware();
 const middleware=[thunk,sagaMiddleware];
@@ -31,5 +33,6 @@ sagaMiddleware.run(runTimer);
 syncTranslationWithStore(store);
 store.dispatch(loadTranslations(Langues));
 store.dispatch(setLocale('en'));
+//moment.locale('en',frenchLocale);//dispatch une action pour changer les langues et regler la locale
 
 export default store;

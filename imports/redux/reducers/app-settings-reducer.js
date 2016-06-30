@@ -12,11 +12,11 @@ const initialState = {
 
 export default function appSettingsReducer(state=initialState,action){
 	switch (action.type){
-		case actions.CHANGE_LANG:
+		/*case actions.CHANGE_LANG:
 			return{
 				...state,
                 language:action.lang
-			};
+			};*/
         case actions.DIMINUE_VOL:
             return{
                 ...state,

@@ -24,7 +24,7 @@ class LoginPageCont extends Component {
 		return (
 
 			<div className="masterContainer">
-				<Header background="withback" logoInvisible={false}/>
+				<Header background="withback" logoInvisible={false} currentLang={()=>this.props.getState().i18n.locale}/>
 				<section className="mainContent" style={style}>
 					<span className="homespan animated zoomIn"><Translate value="application.Login.title"/></span>
 					<IDinputForm/>

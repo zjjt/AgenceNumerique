@@ -11,7 +11,7 @@ class MenuAdminCont extends Component {
 		return (
 
 			<div className="masterContainer">
-				<Header background="withback" logoInvisible={false}/>
+				<Header background="withback" logoInvisible={false} currentLang={()=>this.props.getState().i18n.locale}/>
 				<section className="mainContent rm-justify">
 					<span className="homespan animated zoomIn">Choix du menu</span>
 				</section>
