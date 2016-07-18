@@ -16,6 +16,7 @@ export default class MainLayout extends Component{
 		if(!$('.decoration').length){
 			setInterval(createDiv,1000);
 		}
+		
 		//setInterval(createDiv,1000);
 	}
 	render(){

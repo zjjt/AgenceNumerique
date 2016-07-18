@@ -3,6 +3,7 @@ import {reduxForm,destroy,focus} from 'redux-form';
 import {Bert} from 'meteor/themeteorchef:bert';
 import {connection} from '../../redux/actions/admin-actions';
 import {menuAdmin} from '../../redux/actions/ui-nav-actions';
+import {Translate,Localize,I18n} from 'react-redux-i18n';
 
 /*<button type="submit">OK</button>*/
 /* prevoit d'animer les pages ou il ya le formulaire pour cacher les champs qui ne sont pas
@@ -31,10 +32,10 @@ class Admininput extends Component{
 
 				setTimeout(()=>{
 					if(!foundName){
-						reject({nom:'Cet administrateur n\'existe pas',_error:'Connection échouée'});
+						reject({nom:I18n.t('application.AdminLogin.nomServError'),_error:'Connection échouée'});
 						dispatch(focus('Admin-identification','nom'));
 					}else if(!foundPassword){
-						reject({password:'Mauvais mot de passe',_error:'Connection échouée'});
+						reject({password:I18n.t('application.AdminLogin.nomServError'),_error:'Connection échouée'});
 						dispatch(focus('Admin-identification','password'));
 
 					}else{
@@ -50,14 +51,14 @@ class Admininput extends Component{
 
 		//a revoir une fois le pack d'internalization installer
 		if(nom.touched && nom.error){
-			if(nom.error!=="Cet administrateur n'existe pas")
+			if(nom.error!==I18n.t('application.AdminLogin.nomServError'))
 				Bert.alert(nom.error, 'warning', 'fixed-top', 'fa-frown-o');
 			else
 				Bert.alert(nom.error, 'danger', 'fixed-top', 'fa-frown-o');
 
 		}
 		else if(password.touched && password.error){
-			if(password.error!=="Mauvais mot de passe")
+			if(password.error!==I18n.t('application.AdminLogin.passServError'))
 				Bert.alert(password.error, 'warning', 'fixed-top', 'fa-frown-o');
 			else
 				Bert.alert(password.error, 'danger', 'fixed-top', 'fa-frown-o');
@@ -66,8 +67,8 @@ class Admininput extends Component{
 
 		return(
 			<form onSubmit={handleSubmit(submit)} className="inputsForm">
-				<input type="text" autocomplete="off" placeholder="Entrez votre nom" className="animated slideInRight" {...nom}/><br/>
-				<input type="password" autocomplete="off" placeholder="Entrez votre mot de passe" className="animated slideInLeft" {...password}/><br/>
+				<input type="text" autocomplete="off" placeholder={I18n.t('application.AdminLogin.nomPlaceholder')} className="animated slideInRight" {...nom}/><br/>
+				<input type="password" autocomplete="off" placeholder={I18n.t('application.AdminLogin.passPlaceholder')} className="animated slideInLeft" {...password}/><br/>
 				<input type="submit" value="OK" className="submitBtn invisibleBtn"/>
 
 			</form>
@@ -84,11 +85,11 @@ function validate(values,dispatch) {
 
 	const errors = {};
 	if (!values.nom || values.nom.trim() === '') {
-		errors.nom = 'N\'oubliez pas d\'entrer votre nom';
+		errors.nom = I18n.t('application.AdminLogin.nomErrorVide');
 
 	}
 	if (!values.password || values.password.trim() === '') {
-		errors.password = 'N\'oubliez pas d\'entrer votre mot de passe';
+		errors.password = I18n.t('application.AdminLogin.passErrorVide');
 
 	}
 	return errors;

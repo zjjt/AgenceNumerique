@@ -21,7 +21,7 @@ export default function createDiv(){
 		'opacity':Math.floor(Math.random()*0.5)+0.3
 	}).prependTo( '.masterContainer' ).fadeIn(1000).addClass('anideco').delay(1500).fadeOut(500, function(){
 		$(this).remove();
-		console.log('dans create div');
+		
 		//createDiv();
 	});
 }

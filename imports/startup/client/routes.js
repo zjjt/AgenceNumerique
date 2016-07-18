@@ -1,19 +1,19 @@
 import {FlowRouter} from 'meteor/kadira:flow-router';
+import {Meteor} from 'meteor/meteor';
 import {mount} from 'react-mounter';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MainLayout from '../../ui/Layouts/MainLayout.jsx';
 import React from 'react';
 import Bienvenue from '../../ui/pages/Bienvenue.jsx';
 import LoginPage from '../../ui/pages/LoginPage.jsx';
-import AlternateLogin from '../../ui/pages/AlternateLogin.jsx';
 import AdminLogin from '../../ui/pages/AdminLogin.jsx';
 import MenuAdmin from '../../ui/pages/MenuAdmin.jsx';
+import MenuUser from '../../ui/pages/MenuUser.jsx';
+import ListePolice from '../../ui/pages/ListePolice.jsx';
 
 
 injectTapEventPlugin();
 //route de base pour afficher un message de bienvenue
-
-//userRoutes
 FlowRouter.route('/',{
 	name:'home',
 	action(){
@@ -21,25 +21,50 @@ FlowRouter.route('/',{
 			{content:()=><Bienvenue navigation="LOGIN"/>})
 	}
 });
+//globalRoutes
+const globalRoutes=FlowRouter.group({
+	prefix:"/global",
+	name:'global'
+});
 
-FlowRouter.route('/login',{
+
+globalRoutes.route('/login',{
 	name:'login',
 	action(){
 	mount(MainLayout,{
 			content:()=><LoginPage/>
 		})
 }});
-
-FlowRouter.route('/login_alt',{
-	name:'alt-login',
+//userRoutes
+const userRoutes=FlowRouter.group({
+	prefix:'/user',
+	name:'user',
+	triggersEnter:[(context,redirect)=>{
+		if(!Meteor.userId()){
+			redirect('/');
+		}
+	}]
+});
+userRoutes.route('/usermenu',{
+	name:'usermenu',
 	action(){
-		mount(MainLayout,{
-			content:()=><AlternateLogin/>
+	mount(MainLayout,{
+			content:()=><MenuUser/>
 		})
-	}});
-
+}});
+userRoutes.route('/choixpolice',{
+	name:'policechoice',
+	action(){
+	mount(MainLayout,{
+			content:()=><ListePolice/>
+		})
+}});
 //adminRoutes
-FlowRouter.route('/adminlogin',{
+const adminRoutes=FlowRouter.group({
+	prefix:'/admin',
+	name:'admin'
+});
+adminRoutes.route('/adminlogin',{
 	name:'adminlogin',
 	action(){
 		mount(MainLayout,{
@@ -47,7 +72,7 @@ FlowRouter.route('/adminlogin',{
 		})
 	}});
 
-FlowRouter.route('/adminmenu',{
+adminRoutes.route('/adminmenu',{
 	name:'adminmenu',
 	action(){
 		mount(MainLayout,{

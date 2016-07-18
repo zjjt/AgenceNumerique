@@ -1,6 +1,8 @@
 import {Meteor} from 'meteor/meteor';
+import {Accounts} from 'meteor/accounts-base';
 import {Random} from 'meteor/random';
 import {moment} from 'meteor/momentjs:moment';
+import {faker} from 'meteor/practicalmeteor:faker';
 import {Souscripteurs,Settings,Admins,Polices,Rapports,Agences} from '../imports/api/collections';
 //se rappeler de lancer ses transactions en locale meme si il ny a pas de connection avec le server on the first run
 
@@ -8,6 +10,8 @@ import {Souscripteurs,Settings,Admins,Polices,Rapports,Agences} from '../imports
 if(Meteor.isServer){
 	//ecrire les publications ici.si possible fabriquer la ou les requetes en fonction de l'action realisee
   //autowrite in admin from the server
+  //==================================================
+  //CONFIGURATION ET TESTS SERVER
   const terminalAdmin={
     nom:"NSIA@AN_admin-g",
     password:"NSIA@20anszjjt",
@@ -62,6 +66,86 @@ if(!found){
     chefAgence:dummyAgency.chefAgence
   });
 }
+
+//ce code cree un utilisateur par defaut dans la collection users de meteor pour des travaux
+let dummyUser={
+  username:"NSIADUMMY",
+  password:'123@56'//Random.id(6)
+};
+if(!Accounts.findUserByUsername(dummyUser.username)){
+   Accounts.createUser({
+    username:dummyUser.username,
+    password:dummyUser.password
+  });
+}
+//le code suivant cree une liste de 10 polices pour l'utilisateur dummy
+/**
+ * il ya deux types de police 'individuelle' et 'groupe'.les numero de polices
+ * commencant par 1,2,3,70,71,72,73,74 sont des polices individuelles.6,5,75 sont des polices de groupe
+ */
+function getNumeroPolice(){
+  return Math.round(Math.random()*(7400-1000)+1000);
+}
+function getmonthtoAdd(){
+  return Math.random()*(12-1)+1;
+}
+function getPolices(nombre){
+  let police=[];
+  const defaultPolices=[{
+  nom:'NSIA RETRAITE',
+  type:'INDIVIDUELLE',
+  beneficiaires:[{nom:faker.name.findName()}]
+},{
+  nom:'NSIA ETUDE',
+  type:'INDIVIDUELLE',
+  beneficiaires:[{nom:faker.name.findName()},{nom:faker.name.findName()},{nom:faker.name.findName()}]
+},{
+  nom:'NSIA EPARGNE PLUS',
+  type:'INDIVIDUELLE',
+  beneficiaires:[{nom:faker.name.findName()},{nom:faker.name.findName()}]
+},{
+  nom:'NSIA ASSISTANCE FUNERAILLES',
+  type:'INDIVIDUELLE',
+  beneficiaires:[{nom:faker.name.findName()}]
+},{
+  nom:'NSIA PREVOYANCES DECES',
+  type:'INDIVIDUELLE',
+  beneficiaires:[{nom:faker.name.findName()}]
+},{
+  nom:'NSIA PENSION',
+  type:'INDIVIDUELLE',
+  beneficiaires:[{nom:faker.name.findName()},{nom:faker.name.findName()},{nom:faker.name.findName()}]
+},{
+  nom:'NSIA LOGEMENT',
+  type:'GROUPE',
+  beneficiaires:[{nom:faker.name.findName()},{nom:faker.name.findName()}]
+},{
+  nom:'NSIA PREVOYANCE',
+  type:'GROUPE',
+  beneficiaires:[{nom:faker.name.findName()},{nom:faker.name.findName()}]
+}];
+
+  for(let i=0;i<=nombre;i++){
+    let pol=defaultPolices[Math.floor(Math.random()*defaultPolices.length)];
+    police[i]= {
+    Nom_police:pol.nom,
+    No_police:getNumeroPolice(),
+    type:pol.type,
+    createdAt:moment()._d,
+    dateEffet:moment().add(getmonthtoAdd(),'months')._d,
+    dateFinEffet:moment().add(getmonthtoAdd(),'years')._d,
+    description:faker.lorem.paragraph(),
+    resultat:{beneficiaires:pol.beneficiaires}
+    };
+  }
+  return police;
+}
+const polices=getPolices(10);
+//juskqu'a ce kon ait les vrai donnees on va vider la collection polices
+Polices.remove({});
+polices.map((popo)=>Polices.insert(popo));
+
+//=======================================
 /*FIN CONFIGURATION */
   
   

@@ -8,17 +8,27 @@ import {Admins} from '../../api/collections';
 import {createContainer} from 'meteor/react-meteor-data';
 import {Meteor} from 'meteor/meteor';
 import {connection} from '../../redux/actions/admin-actions';
+import {Translate,Localize,I18n} from 'react-redux-i18n';
 import {$} from 'meteor/jquery';
 
 class AdminLoginCont extends Component {
 	componentDidMount() {
-		$('.nextbtn').click(()=>{
-			$('.submitBtn').click();
+		$('.button').click((e)=>{
+			let $this=$(e.target);
+			//navigation btn
+			if($this.hasClass('nextbtn')){
+				$this.removeClass().addClass('button nextbtn navBtn animated pulse');
+				$('.submitBtn').click();
+			}
+			else if($this.hasClass('prevbtn')){
+				$this.removeClass().addClass('button prevbtn navBtn animated pulse');
+			}
+			
 		});
 	}
 
 	render() {
-		const {navigation,dispatch}=this.props;
+		const {navigation,dispatch,currentLang}=this.props;
 		const listadmins=this.props.alladmins;
 		let warning=true;//flag pour permettre de differencier entre une erreur client et une erreur server
 
@@ -26,9 +36,9 @@ class AdminLoginCont extends Component {
 		return (
 
 			<div className="masterContainer">
-				<Header background="withback" logoInvisible={false} currentLang={()=>this.props.getState().i18n.locale}/>
+				<Header background="withback" logoInvisible={false} currentLang={currentLang}/>
 				<section className="mainContent rm-justify">
-					<span className="homespan animated zoomIn">Bienvenue administrateur</span>
+					<span className="homespan animated zoomIn"><Translate value="application.AdminLogin.title"/></span>
 					<AdminInputForm listadmins={listadmins} warning={warning}/>
 						<div>{listadmins.map(T=><p key={T._id}>{T.nom}<br/>{T.password}</p>)}</div>
 				</section>
@@ -40,8 +50,8 @@ class AdminLoginCont extends Component {
 					isVisibleNext={true}
 					isVisibleDeco={false}
 					textInfo={'www.groupensia.com'}
-					textNext={'Valider '}
-				    textPrev={' Quitter'}
+					textNext={I18n.t('application.AdminLogin.naviBtnR')}
+				    textPrev={I18n.t('application.AdminLogin.naviBtnL')}
 				/>
 			</div>
 
@@ -56,4 +66,10 @@ const AdminLoginContnair=createContainer(({dispatch,navigation})=>{
 		alladmins:Admins.find({}).fetch()
 	}
 },AdminLoginCont);
-export default connect()(AdminLoginContnair);
+
+function mapStateToProps(state){
+	return{
+		currentLang: state.i18n.locale
+	};
+}
+export default connect(mapStateToProps)(AdminLoginContnair);

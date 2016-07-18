@@ -3,10 +3,10 @@ import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import {connect} from 'react-redux';
 import {Translate,Localize,I18n} from 'react-redux-i18n';
-import MenuBtnBox from '../components/MenuBtnBox.jsx';
+import {$} from 'meteor/jquery'
 
-class MenuAdminCont extends Component {
-
+class ListePoliceCont extends Component {
+//jquery pour la gestion de l'animation du menu utilisateur a utiliser pour le menu admin
 	componentDidMount() {
 		$('.button').click((e)=>{
 			let $this=$(e.target);
@@ -52,19 +52,25 @@ class MenuAdminCont extends Component {
 			<div className="masterContainer">
 				<Header background="withback" logoInvisible={false} currentLang={currentLang}/>
 				<section className="mainContent rm-justify">
-					<span className="homespan animated zoomIn"><Translate value="application.MenuAdmin.title"/></span>
-					<MenuBtnBox nbrBtn={3} i18n="MenuAdmin" />
+					<span className="homespan animated zoomIn"><Translate value="application.ChoixPolice.title"/></span>
+					/**il y a deux div */
+                    <div className="horizontalCont">
+                        <div className="policeListContainer"></div>
+                        <div className="policeDescription"></div>
+                    </div>
+                    
 				</section>
 				<Footer
-					onClickRetour={()=>{}}
+					onClickRetour={()=>dispatch(deconnection('home'))}
 					onClickNext={()=>{}}
 					onClickDeco={()=>{}}
-					isVisiblePrev={false}
+                    /*isListReady={true}*/
+                    isVisiblePrev={true}
 					isVisibleNext={false}
-					isVisibleDeco={true}
+					isVisibleDeco={false}
 					textInfo={'www.groupesnsia.com'}
-					textNext={' '}
-					textPrev={''}
+					textNext={I18n.t('application.ChoixPolice.naviBtnR')}
+					textPrev={I18n.t('application.ChoixPolice.naviBtnL')}
 				/>
 			</div>
 
@@ -77,4 +83,4 @@ function mapStateToProps(state){
 		currentLang: state.i18n.locale
 	};
 }
-export default connect(mapStateToProps)(MenuAdminCont);
+export default connect(mapStateToProps)(ListePoliceCont);

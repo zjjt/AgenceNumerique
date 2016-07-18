@@ -11,7 +11,18 @@ import {Translate,Localize,I18n} from 'react-redux-i18n';
 
 
 export  class BienvenueCont extends Component{
-	
+	componentDidMount() {
+		$('.button').click((e)=>{
+			let $this=$(e.target);
+			//navigation btn
+			if($this.hasClass('nextbtn')){
+				$this.removeClass().addClass('button nextbtn navBtn animated pulse');
+			}
+			else if($this.hasClass('prevbtn')){
+				$this.removeClass().addClass('button prevbtn navBtn animated pulse');
+			}
+		});
+	}
 	render(){
 		const{currentLang}=this.props;
 		const style={
@@ -23,7 +34,7 @@ export  class BienvenueCont extends Component{
 				<Header background="withback" logoInvisible={false} logoclicking={()=>this.props.dispatch(logoclicked())} currentLang={currentLang}/>
 
 				<section className="mainContent animated zoomIn" style={style}>
-					<span className="homespan">NSIA Vie Assurances<br/><Translate value="application.Bienvenue.welcome"/></span>
+					<span className="homespan"><Translate value="application.Bienvenue.title"/><br/><Translate value="application.Bienvenue.welcome"/></span>
 					<span className="homespan-child"><br/><br/><Translate value="application.Bienvenue.clignotext"/></span>
 					<div className="languageBox">
 						<LanguageBox handleclik={()=>this.props.dispatch(changeLangue('fr'))} language="fr" classes=" fadeInLeft" image="/img/fr.png"/>

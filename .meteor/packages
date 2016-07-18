@@ -32,6 +32,7 @@ react-meteor-data
 accounts-base
 accounts-password
 momentjs:moment
-tap:i18n-bundler
 random
 ground:db
+crosswalk
+practicalmeteor:faker

@@ -8,13 +8,14 @@ const initialState = {
 export default function navigationReducer(state=initialState,actions){
 	switch (actions.type){
 		case actions.ENTREE_DANS_LAPP:
-		case actions.NA_PAS_ID:
 		case actions.RETOUR_AU_DEBUT:
 		case actions.RETOUR:
 		case actions.VA_AU_DEBUT:
 		case actions.MENU_ADMIN:
 		case actions.SETTINGS:
+		case actions.CHOIX_DE_VISITE:
 		case actions.RAPPORT:
+		case actions.DECONNECTION:
 			return{
 				...state,
 				navigation:actions.navigation

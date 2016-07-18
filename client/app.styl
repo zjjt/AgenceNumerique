@@ -252,10 +252,24 @@ html,body
 
     span.homespan
         font-size 4em
+    .horizontalCont
+      display flex
+      flex-direction row
+      justify-content center
+      border 1px solid white
+      width 100%
+      height 100%
+        .policeListContainer
+          border 1px solid red
+          width 50%
+        .policeDescription  
+          border 1px solid blue
+          width 50%
 
 .fa-caret-left
 .fa-caret-right
   font-size 1em
+
 .button
   background-color aliceblue
   border none
@@ -266,6 +280,126 @@ html,body
   text-align center
   text-decoration none
   min-width 20%
+  shadow-level(5)
+  transition all 0.3s cubic-bezier(0.86, 0, 0.07, 1)
+  &:active
+    shadow-level(1)
+.menulights
+  background-color #d29b09 !important
+  border none
+  color white
+  font-size 2em
+  padding: 15px 32px
+  font-family 'Open Sans', sans-serif
+  text-align center
+  text-decoration none
+
+ 
+.adminbtn
+  border-radius 2em
+  background-color #212f68
+.menuClicked
+  background rgba(255,255,255,1);
+  background -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(222,222,222,1) 0%, rgba(246,246,246,1) 1%, rgba(210,156,9,1) 73%, rgba(120,87,2,1) 94%, rgba(120,87,2,1) 100%)
+  background -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(0%, rgba(222,222,222,1)), color-stop(1%, rgba(246,246,246,1)), color-stop(73%, rgba(210,156,9,1)), color-stop(94%, rgba(120,87,2,1)), color-stop(100%, rgba(120,87,2,1)))
+  background -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(222,222,222,1) 0%, rgba(246,246,246,1) 1%, rgba(210,156,9,1) 73%, rgba(120,87,2,1) 94%, rgba(120,87,2,1) 100%)
+  background -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(222,222,222,1) 0%, rgba(246,246,246,1) 1%, rgba(210,156,9,1) 73%, rgba(120,87,2,1) 94%, rgba(120,87,2,1) 100%)
+  background -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(222,222,222,1) 0%, rgba(246,246,246,1) 1%, rgba(210,156,9,1) 73%, rgba(120,87,2,1) 94%, rgba(120,87,2,1) 100%)
+  background linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(222,222,222,1) 0%, rgba(246,246,246,1) 1%, rgba(210,156,9,1) 73%, rgba(120,87,2,1) 94%, rgba(120,87,2,1) 100%)
+  color #785702
+  box-shadow none !important
+.menubtn
+  background-color rgba(255,255,255,1)
+  background -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(222,222,222,1) 11%, rgba(246,246,246,1) 50%, rgba(46,46,46,1) 100%)
+  background -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(11%, rgba(222,222,222,1)), color-stop(50%, rgba(246,246,246,1)), color-stop(100%, rgba(46,46,46,1)))
+  background -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(222,222,222,1) 11%, rgba(246,246,246,1) 50%, rgba(46,46,46,1) 100%)
+  background -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(222,222,222,1) 11%, rgba(246,246,246,1) 50%, rgba(46,46,46,1) 100%)
+  background -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(222,222,222,1) 11%, rgba(246,246,246,1) 50%, rgba(46,46,46,1) 100%)
+  background linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(222,222,222,1) 11%, rgba(246,246,246,1) 50%, rgba(46,46,46,1) 100%)
+  color #696969
+  transition background 2s
+  &:active
+    border 2px solid grey
+.golden
+  background #d29b09
+
+.btnlightL
+  float left
+  width 50px
+  height 46px
+  margin-top 8px
+  border-top-left-radius 2em
+  border-bottom-left-radius 2em
+  -webkit-box-shadow: -4px -6px 96px 19px rgba(210,155,9,1)
+  -moz-box-shadow: -4px -6px 96px 19px rgba(210,155,9,1)
+  box-shadow: -4px -6px 96px 19px rgba(210,155,9,1)
+  background white
+.btnlightR
+  float right
+  width 50px
+  height 46px
+  margin-top 8px
+  border-top-right-radius 2em
+  border-bottom-right-radius 2em
+  -webkit-box-shadow: -4px -6px 96px 19px rgba(210,155,9,1)
+  -moz-box-shadow: -4px -6px 96px 19px rgba(210,155,9,1)
+  box-shadow: -4px -6px 96px 19px rgba(210,155,9,1)
+  background white
+.menubtnL
+  text-align center
+  border-top-right-radius 2em
+  border-bottom-right-radius 2em
+  border-top-left-radius 15px
+  border-bottom-left-radius 15px
+.menubtnR
+  text-align center
+  border-top-left-radius 2em
+  border-bottom-left-radius 2em
+  border-top-right-radius 15px
+  border-bottom-right-radius 15px
+.menubtnL:before
+  content ''
+  position absolute
+  height 5px
+  border-bottom 2px solid white
+  border-top 2px solid white
+  top 45%
+  width 600px
+.menubtnR:after
+  content ''
+  position absolute
+  height 5px
+  border-bottom 2px solid white
+  border-top 2px solid white
+  top 45%
+  width 600px
+.menubtnR:after
+  left 100%
+.menubtnL:before
+  right 100%
+.menuClickedL:after
+  right 100%
+  content ''
+  position absolute
+  height 5px
+  border-bottom 2px solid #d29b09
+  border-top 2px solid #d29b09
+  top 45%
+  width 600px
+  
+.menuClickedR:after
+  left 100%
+  content ''
+  position absolute
+  height 5px
+  border-bottom 2px solid #d29b09
+  border-top 2px solid #d29b09
+  top 45%
+  width 600px
+.adminBtnL
+  float left
+.adminBtnR
+  float right  
 
 .nextbtn
   border-bottom-right-radius 2em 
@@ -292,6 +426,9 @@ html,body
 .invisible
   visibility hidden
 
+.displayNone
+  display none
+  
 .headerContainer
   display: flex
   flex-grow 1
@@ -341,3 +478,17 @@ html,body
   width 30%
   margin-top 30px
   justify-content: space-between
+
+.menuBox
+  display flex
+  flex-direction column
+  width 80%
+  margin-top 5%
+  //margin-top 30px
+  justify-content: space-between 
+
+.menuBoxBtnWrapper
+  width 100%
+  margin-bottom 40px
+
+ 

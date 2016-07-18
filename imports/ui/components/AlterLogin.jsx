@@ -39,7 +39,7 @@ function validate(values) {
 	/*if (values.nom.length < 10) {
 		errors.nom = '10 caractères minimum';
 	}*/
-	console.log(values.nom);
+	
 	if (!values.tel || values.tel.trim() === '') {
 		errors.tel = I18n.t('application.AltLogin.telErrorVide');
 

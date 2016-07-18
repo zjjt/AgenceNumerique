@@ -19,7 +19,7 @@ export default function Header({background,logoInvisible,logoclicking,currentLan
 	}
 	
 	let classes=background==='withback'?'headerContainer':'headerContainer bnone';
-	console.log(currentLang);
+	
 	return(
 		<header>
 			<div className={classes}>
