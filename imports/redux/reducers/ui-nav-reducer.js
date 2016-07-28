@@ -14,6 +14,7 @@ export default function navigationReducer(state=initialState,actions){
 		case actions.MENU_ADMIN:
 		case actions.SETTINGS:
 		case actions.CHOIX_DE_VISITE:
+		case actions.CHOIX_POLICE:
 		case actions.RAPPORT:
 		case actions.DECONNECTION:
 			return{

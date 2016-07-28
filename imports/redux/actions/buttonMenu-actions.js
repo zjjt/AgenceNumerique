@@ -55,6 +55,7 @@ export function clickOnMenu(menu,pageOuMenuExist){
                         type:CHOSEN_MENU,
                         endmenu:'none'
                     } 
+                    case "MenuAdmin":
                  default:
                     return{
                         type:CHOSEN_MENU,

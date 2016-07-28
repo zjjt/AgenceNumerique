@@ -34,7 +34,8 @@ const Langues={
                 title:'Dashboard',
                 menuBtnL1:'Settings',
                 menuBtnR1:'Activity log',
-                
+                naviBtnR:'Next ',
+                canGoNext:'Please choose an option amongst those listed below'
             },
                MenuUser:{
                 title:'How can we be of service ?',
@@ -46,6 +47,7 @@ const Langues={
                 menuBtnR3:'Duplicate the bulletin',
                 naviBtnL:' Quit',
                 naviBtnR:'Next ',
+                canGoNext:'Please choose an option amongst those listed below. '
             },
             ChoixPolice:{
                 title:'Welcome ',
@@ -94,9 +96,11 @@ const Langues={
 
             },
             MenuAdmin:{
-                title:'Dashboard',
-                menuBtnL1:'Settings',
-                menuBtnR1:'Activity log',
+                title:'Tableau de bord',
+                menuBtnL1:'Réglages',
+                menuBtnR1:'Rapport d\'activité',
+                naviBtnR:'Suivant ',
+                canGoNext:'Veuillez choisir une option parmis celles citées ci-dessous.'
                 
             },
             MenuUser:{
@@ -108,7 +112,8 @@ const Langues={
                 menuBtnL3:'Conditions particulières',
                 menuBtnR3:'Duplicata de bulletin',
                 naviBtnL:' Quitter',
-                naviBtnR:'Suivant '
+                naviBtnR:'Suivant ',
+                canGoNext:'Veuillez choisir une option parmis celles citées ci-dessous.'
             },
               ChoixPolice:{
                 title:'Bonjour ',

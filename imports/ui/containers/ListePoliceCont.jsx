@@ -3,6 +3,7 @@ import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import {connect} from 'react-redux';
 import {Translate,Localize,I18n} from 'react-redux-i18n';
+import {Retour} from '../../redux/actions/ui-nav-actions';
 import {$} from 'meteor/jquery'
 
 class ListePoliceCont extends Component {
@@ -61,12 +62,12 @@ class ListePoliceCont extends Component {
                     
 				</section>
 				<Footer
-					onClickRetour={()=>dispatch(deconnection('home'))}
+					onClickRetour={()=>dispatch(Retour('usermenu'))}
 					onClickNext={()=>{}}
 					onClickDeco={()=>{}}
                     /*isListReady={true}*/
                     isVisiblePrev={true}
-					isVisibleNext={false}
+					isVisibleNext={true}
 					isVisibleDeco={false}
 					textInfo={'www.groupesnsia.com'}
 					textNext={I18n.t('application.ChoixPolice.naviBtnR')}

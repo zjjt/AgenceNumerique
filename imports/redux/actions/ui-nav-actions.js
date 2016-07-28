@@ -93,9 +93,11 @@ export function Retour(navigation){
 		FlowRouter.go(navigation)
 	},1000);
 	//FlowRouter.go(navigation);
-	return{
-		type:RETOUR,
-		navigation
+	return(dispatch,getState)=>{
+		let chosenMenu=getState().buttonsMenu.chosenMenu;
+		if(chosenMenu!=='none')
+			dispatch(clickOnMenu('','Deco'));
+		dispatch({type:RETOUR,navigation});	
 	}
 }
 
@@ -113,14 +115,28 @@ export function choixVisite(navigation){
 
 export const DECONNECTION='DECONNECTION';
 export function deconnection(navigation){
-	Meteor.logout();
+	
 	setTimeout(()=>{
 		FlowRouter.go(navigation)
 	},1000);
+	Meteor.logout();
 	//FlowRouter.go(navigation);
 	return(dispatch,getState)=>{
 		dispatch(clickOnMenu('','Deco'));
 		dispatch({type:DECONNECTION,navigation});
 	}
+
+}
+export const CHOIX_POLICE='CHOIX_POLICE';
+export function choixPolice(navigation){
+	setTimeout(()=>{
+		FlowRouter.go(navigation)
+	},1000);
+	//FlowRouter.go(navigation);
+	return{
+		type:CHOIX_POLICE,
+		navigation
+	}
+	
 
 }

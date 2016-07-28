@@ -12,6 +12,8 @@ import {Translate,Localize,I18n} from 'react-redux-i18n';
 
 export  class BienvenueCont extends Component{
 	componentDidMount() {
+		const{currentLang}=this.props;
+
 		$('.button').click((e)=>{
 			let $this=$(e.target);
 			//navigation btn
@@ -21,6 +23,38 @@ export  class BienvenueCont extends Component{
 			else if($this.hasClass('prevbtn')){
 				$this.removeClass().addClass('button prevbtn navBtn animated pulse');
 			}
+		});
+		/*animation des langues
+		detect la langue par defaut et affiche le curseur avec une animation
+		*/switch(currentLang){
+			case 'fr':
+				$('.fr').next().addClass(" animated infinite pulse ").removeClass('displayNone');
+			break;
+			case 'en':
+				$('.en').next().addClass(" animated infinite pulse ").removeClass('displayNone');
+			break;
+
+		}
+		if($('.en').next().is(':hidden')){
+			$('.en').next().addClass('displayNone');
+		}else if($('.fr').next().is(':hidden')){
+			$('.fr').next().addClass('displayNone');
+		}
+		$('.fr').click((e)=>{
+			let $this=$(e.target);
+			if($this.next().hasClass('displayNone')){
+				$('.en').next().addClass('displayNone');
+				$this.next().removeClass('displayNone');
+			}
+			
+		});
+		$('.en').click((e)=>{
+			let $this=$(e.target);
+			if($this.next().hasClass('displayNone')){
+				$('.fr').next().addClass('displayNone');
+				$this.next().removeClass('displayNone');
+			}
+			
 		});
 	}
 	render(){
@@ -35,11 +69,12 @@ export  class BienvenueCont extends Component{
 
 				<section className="mainContent animated zoomIn" style={style}>
 					<span className="homespan"><Translate value="application.Bienvenue.title"/><br/><Translate value="application.Bienvenue.welcome"/></span>
-					<span className="homespan-child"><br/><br/><Translate value="application.Bienvenue.clignotext"/></span>
 					<div className="languageBox">
 						<LanguageBox handleclik={()=>this.props.dispatch(changeLangue('fr'))} language="fr" classes=" fadeInLeft" image="/img/fr.png"/>
 						<LanguageBox handleclik={()=>this.props.dispatch(changeLangue('en'))} language="en" classes=" fadeInRight" image="/img/en.png"/>
 					</div>
+					<span className="homespan-child"><br/><br/><Translate value="application.Bienvenue.clignotext"/></span>
+					
 					
 				</section>
 				<Footer

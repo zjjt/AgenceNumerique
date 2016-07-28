@@ -23,7 +23,7 @@ export default function Header({background,logoInvisible,logoclicking,currentLan
 	return(
 		<header>
 			<div className={classes}>
-				<Logo width={'100'} height={'50'} invisible={logoInvisible} handleDoubleClick={logoclicking}/>
+				<Logo invisible={logoInvisible} handleDoubleClick={logoclicking}/>
 				<p className='headerDate'>{DateduJour}</p>
 				<WifiStatus/>
 			</div>

@@ -13,8 +13,9 @@ export default function LanguageBox({handleclik,image,language,classes}){
     }
     
     return(
-       <div className="simpleLDiv animated fadeInDown">
+       <div className="simpleLDiv animated fadeInDown ">
         <img src={image} alt={alt} onClick={handleclik} className={className}/>
+        <div className="simpleBorders displayNone"></div>
 	   </div>			
     );
 }

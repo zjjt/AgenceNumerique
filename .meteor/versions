@@ -6,6 +6,7 @@ aldeed:schema-deny@1.0.1
 aldeed:schema-index@1.0.1
 aldeed:simple-schema@1.5.3
 allow-deny@1.0.5
+amplify@1.0.0
 autoupdate@1.2.10
 babel-compiler@6.8.3
 babel-runtime@0.1.9_1
@@ -19,7 +20,6 @@ caching-compiler@1.0.5_1
 caching-html-compiler@1.0.6
 callback-hook@1.0.9
 check@1.2.3
-crosswalk@1.6.2
 ddp@1.2.5
 ddp-client@1.2.8_1
 ddp-common@1.2.6
@@ -104,6 +104,7 @@ reactive-dict@1.1.8
 reactive-var@1.0.10
 reload@1.1.10
 retry@1.0.8
+richsilv:dumb-collections@1.1.5
 routepolicy@1.0.11
 service-configuration@1.0.10
 session@1.1.6
@@ -118,6 +119,7 @@ templating@1.1.12_1
 templating-tools@1.0.4
 themeteorchef:bert@2.1.0
 tmeasday:check-npm-versions@0.3.1
+tmeasday:publish-counts@0.7.3
 tracker@1.0.14
 ui@1.0.11
 underscore@1.0.9

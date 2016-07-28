@@ -34,5 +34,6 @@ accounts-password
 momentjs:moment
 random
 ground:db
-crosswalk
 practicalmeteor:faker
+tmeasday:publish-counts
+richsilv:dumb-collections

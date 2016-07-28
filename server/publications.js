@@ -67,7 +67,7 @@ if(!found){
   });
 }
 
-//ce code cree un utilisateur par defaut dans la collection users de meteor pour des travaux
+//ce code cree un utilisateur par defaut dans la collection users de meteor pour des travaux et divers tests
 let dummyUser={
   username:"NSIADUMMY",
   password:'123@56'//Random.id(6)
@@ -75,9 +75,16 @@ let dummyUser={
 if(!Accounts.findUserByUsername(dummyUser.username)){
    Accounts.createUser({
     username:dummyUser.username,
-    password:dummyUser.password
+    password:dummyUser.password,
   });
+ 
 }
+dummyUser.id=Meteor.users.findOne({username:dummyUser.username},{$fields:{'_id':1,'createdAt':0,'services':0,'username':0}});
+Meteor.users.update(dummyUser.id._id,{
+    $set:{
+      identity:dummyUser.password
+    }
+ });
 //le code suivant cree une liste de 10 polices pour l'utilisateur dummy
 /**
  * il ya deux types de police 'individuelle' et 'groupe'.les numero de polices
@@ -131,6 +138,7 @@ function getPolices(nombre){
     Nom_police:pol.nom,
     No_police:getNumeroPolice(),
     type:pol.type,
+    owner:dummyUser.password,
     createdAt:moment()._d,
     dateEffet:moment().add(getmonthtoAdd(),'months')._d,
     dateFinEffet:moment().add(getmonthtoAdd(),'years')._d,
@@ -150,12 +158,29 @@ polices.map((popo)=>Polices.insert(popo));
   
   
 /*PUBLICATIONS API */
+//========================================
   Meteor.publish('alladmins',()=>{
     return Admins.find({});
   });
 
   Meteor.publish('agences',()=>{
     return Agences.find({});
+  });
+  //Polices d'assurance
+  //on a juste besoin du nom de la police, du nombre de benefiaires et des dates de mise en effet et d'expiration,description
+ const contratpubF={
+   type:1,
+   Nom_police:1,
+   dateEffet:1
+ };
+  Meteor.publish('getContrat',(filter,pageSkip=0)=>{
+    switch(SVGFilterPrimitiveStandardAttributes){
+      case '':
+      return;
+      default:
+      return Polices.find()
+    }
+
   });
 //settings--------
   const getSetting=(filter)=>{

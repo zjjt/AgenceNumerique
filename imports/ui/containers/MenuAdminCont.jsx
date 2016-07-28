@@ -3,10 +3,14 @@ import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import {connect} from 'react-redux';
 import {Translate,Localize,I18n} from 'react-redux-i18n';
+import {deconnection,choixVisite} from '../../redux/actions/ui-nav-actions';
 import MenuBtnBox from '../components/MenuBtnBox.jsx';
 
 class MenuAdminCont extends Component {
-
+	constructor(props){
+		super(props);
+		this.state={canGoNext:false};
+	}
 	componentDidMount() {
 		$('.button').click((e)=>{
 			let $this=$(e.target);
@@ -46,24 +50,24 @@ class MenuAdminCont extends Component {
 		});
 	}
 	render() {
-		const {navigation,dispatch,currentLang}=this.props;
+		const {navigation,dispatch,currentLang,chosenMenu}=this.props;
 		return (
 
 			<div className="masterContainer">
 				<Header background="withback" logoInvisible={false} currentLang={currentLang}/>
 				<section className="mainContent rm-justify">
 					<span className="homespan animated zoomIn"><Translate value="application.MenuAdmin.title"/></span>
-					<MenuBtnBox nbrBtn={3} i18n="MenuAdmin" />
+					<MenuBtnBox nbrBtn={1} i18n="MenuAdmin" usermenu={true} dispatch={dispatch} page="MenuAdmin" />
 				</section>
 				<Footer
 					onClickRetour={()=>{}}
-					onClickNext={()=>{}}
+					onClickNext={()=>chosenMenu!=='none'?dispatch(choixVisite('admincontent')):Bert.alert(I18n.t('application.MenuAdmin.canGoNext'), 'warning', 'fixed-top', 'fa-frown-o')}
 					onClickDeco={()=>{}}
 					isVisiblePrev={false}
-					isVisibleNext={false}
+					isVisibleNext={true}
 					isVisibleDeco={true}
 					textInfo={'www.groupesnsia.com'}
-					textNext={' '}
+					textNext={I18n.t('application.MenuAdmin.naviBtnR')}
 					textPrev={''}
 				/>
 			</div>
@@ -74,7 +78,8 @@ class MenuAdminCont extends Component {
 }
 function mapStateToProps(state){
 	return{
-		currentLang: state.i18n.locale
+		currentLang: state.i18n.locale,
+		chosenMenu:state.buttonsMenu.chosenMenu
 	};
 }
 export default connect(mapStateToProps)(MenuAdminCont);

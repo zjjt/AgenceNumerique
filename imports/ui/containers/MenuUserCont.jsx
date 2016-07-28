@@ -3,11 +3,15 @@ import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import {connect} from 'react-redux';
 import {Translate,Localize,I18n} from 'react-redux-i18n';
-import {deconnection} from '../../redux/actions/ui-nav-actions';
+import {deconnection,choixPolice} from '../../redux/actions/ui-nav-actions';
 import MenuBtnBox from '../components/MenuBtnBox.jsx';
 import {$} from 'meteor/jquery'
 
 class MenuUserCont extends Component {
+	constructor(props){
+		super(props);
+		this.state={canGoNext:false};
+	}
 //jquery pour la gestion de l'animation du menu utilisateur a utiliser pour le menu admin
 	componentDidMount() {
 		$('.button').click((e)=>{
@@ -36,18 +40,20 @@ class MenuUserCont extends Component {
 				if($this.hasClass('menubtnL'))
 				{	
 					$this.removeClass('menubtn').addClass('menuClicked menuClickedL');
-					$this.prev().addClass('animated zoomIn').delay(1000).removeClass().addClass('menulights btnlightL animated infinite pulse');
+					$this.prev().addClass('animated zoomIn').delay(1000).removeClass().addClass('btnlightL animated infinite pulse menulights');
 				}
 				else if($this.hasClass('menubtnR')){
 					$this.removeClass('menubtn').addClass('menuClicked menuClickedR');
-					$this.prev().addClass('animated zoomIn').delay(1000).removeClass().addClass('menulights btnlightR animated infinite pulse');
+					$this.prev().addClass('animated zoomIn').delay(1000).removeClass().addClass('btnlightR animated infinite pulse menulights');
 				}
 				
 			}
 		
 		});
 	}
+	
 	render() {
+		console.log(this.state.canGoNext);
 		const {navigation,dispatch,currentLang,chosenMenu}=this.props;
 		return (
 
@@ -57,12 +63,12 @@ class MenuUserCont extends Component {
 					<span className="homespan animated zoomIn"><Translate value="application.MenuUser.title"/></span>
 					<MenuBtnBox nbrBtn={3} i18n="MenuUser" usermenu={true} dispatch={dispatch} page="MenuUser"/>
 				</section>
-				<Footer
+				<Footer 
 					onClickRetour={()=>dispatch(deconnection('home'))}
-					onClickNext={()=>{}}
+					onClickNext={()=>chosenMenu!=='none'?dispatch(choixPolice('policechoice')):Bert.alert(I18n.t('application.MenuUser.canGoNext'), 'warning', 'fixed-top', 'fa-frown-o')}
 					onClickDeco={()=>{}}
 					isVisiblePrev={true}
-					isVisibleNext={chosenMenu!=='none'?true:false}
+					isVisibleNext={true}
 					isVisibleDeco={false}
 					textInfo={'www.groupesnsia.com'}
 					textNext={I18n.t('application.MenuUser.naviBtnR')}

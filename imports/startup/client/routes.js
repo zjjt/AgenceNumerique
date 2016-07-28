@@ -35,7 +35,7 @@ globalRoutes.route('/login',{
 			content:()=><LoginPage/>
 		})
 }});
-//userRoutes
+//userRoutes***************************************
 const userRoutes=FlowRouter.group({
 	prefix:'/user',
 	name:'user',
@@ -59,7 +59,7 @@ userRoutes.route('/choixpolice',{
 			content:()=><ListePolice/>
 		})
 }});
-//adminRoutes
+//adminRoutes***************************************
 const adminRoutes=FlowRouter.group({
 	prefix:'/admin',
 	name:'admin'
