@@ -2,7 +2,9 @@ import {Meteor} from 'meteor/meteor';
 import {Accounts} from 'meteor/accounts-base';
 import {Random} from 'meteor/random';
 import {moment} from 'meteor/momentjs:moment';
-import {faker} from 'meteor/practicalmeteor:faker';
+import {faker} from 'meteor/practicalmeteor:faker'; 
+import {Baby} from 'meteor/modweb:baby-parse';
+import {check} from 'meteor/check';
 import {Souscripteurs,Settings,Admins,Polices,Rapports,Agences} from '../imports/api/collections';
 //se rappeler de lancer ses transactions en locale meme si il ny a pas de connection avec le server on the first run
 
@@ -52,7 +54,7 @@ if(!found){
 }
 
 //check if dummy agence existe si non cree une dummy agence
-const agencearray=Agences.find({}).fetch();
+/*const agencearray=Agences.find({}).fetch();
 found=agencearray.some((el)=>{
   if(el.nom==='Agence par defaut' && el.pays==='Côte d\'ivoire')
     return true;
@@ -65,14 +67,14 @@ if(!found){
     email:dummyAgency.email,
     chefAgence:dummyAgency.chefAgence
   });
-}
+}*/
 
 //ce code cree un utilisateur par defaut dans la collection users de meteor pour des travaux et divers tests
 let dummyUser={
-  username:"NSIADUMMY",
-  password:'123@56'//Random.id(6)
+  username:"12345",
+  password:'10-10-1990'//Random.id(6)
 };
-if(!Accounts.findUserByUsername(dummyUser.username)){
+/*if(!Accounts.findUserByUsername(dummyUser.username)){
    Accounts.createUser({
     username:dummyUser.username,
     password:dummyUser.password,
@@ -82,76 +84,56 @@ if(!Accounts.findUserByUsername(dummyUser.username)){
 dummyUser.id=Meteor.users.findOne({username:dummyUser.username},{$fields:{'_id':1,'createdAt':0,'services':0,'username':0}});
 Meteor.users.update(dummyUser.id._id,{
     $set:{
-      identity:dummyUser.password
+      ide_client_unique:dummyUser.username
     }
- });
-//le code suivant cree une liste de 10 polices pour l'utilisateur dummy
-/**
- * il ya deux types de police 'individuelle' et 'groupe'.les numero de polices
- * commencant par 1,2,3,70,71,72,73,74 sont des polices individuelles.6,5,75 sont des polices de groupe
- */
-function getNumeroPolice(){
-  return Math.round(Math.random()*(7400-1000)+1000);
-}
-function getmonthtoAdd(){
-  return Math.random()*(12-1)+1;
-}
-function getPolices(nombre){
-  let police=[];
-  const defaultPolices=[{
-  nom:'NSIA RETRAITE',
-  type:'INDIVIDUELLE',
-  beneficiaires:[{nom:faker.name.findName()}]
-},{
-  nom:'NSIA ETUDE',
-  type:'INDIVIDUELLE',
-  beneficiaires:[{nom:faker.name.findName()},{nom:faker.name.findName()},{nom:faker.name.findName()}]
-},{
-  nom:'NSIA EPARGNE PLUS',
-  type:'INDIVIDUELLE',
-  beneficiaires:[{nom:faker.name.findName()},{nom:faker.name.findName()}]
-},{
-  nom:'NSIA ASSISTANCE FUNERAILLES',
-  type:'INDIVIDUELLE',
-  beneficiaires:[{nom:faker.name.findName()}]
-},{
-  nom:'NSIA PREVOYANCES DECES',
-  type:'INDIVIDUELLE',
-  beneficiaires:[{nom:faker.name.findName()}]
-},{
-  nom:'NSIA PENSION',
-  type:'INDIVIDUELLE',
-  beneficiaires:[{nom:faker.name.findName()},{nom:faker.name.findName()},{nom:faker.name.findName()}]
-},{
-  nom:'NSIA LOGEMENT',
-  type:'GROUPE',
-  beneficiaires:[{nom:faker.name.findName()},{nom:faker.name.findName()}]
-},{
-  nom:'NSIA PREVOYANCE',
-  type:'GROUPE',
-  beneficiaires:[{nom:faker.name.findName()},{nom:faker.name.findName()}]
-}];
+ });*/
+ //Ici on parse le fichier IDUNIQ en json pour insertion dans meteor.users
+const IDUNIQPATH=process.env.PWD+'/IDUNIQ.csv';
+Baby.parseFiles(IDUNIQPATH,{
+  header:true,
+  complete(results,file){
+    check(results.data,Array);
+    for(let i=0;i<results.data.length;i++){
+      let user =results.data[i];
+      if(!Accounts.findUserByUsername(user.IDE_CLIENT_UNIQUE)){
+        //createUser then update it with
+        Accounts.createUser({
+           username:user.IDE_CLIENT_UNIQUE,
+           password:user.DATE_NAISSANCE,
+        });
+        //on recupere le _id meteor de l'utilisateur cree
+        let nuser=Meteor.users.findOne({username:user.IDE_CLIENT_UNIQUE},{$fields:{'_id':1,'createdAt':0,'services':0,'username':0}}); 
+        Meteor.users.update(nuser._id,{
+          $set:{
+                date_naissance:user.DATE_NAISSANCE,
+                nom:user.NOM_CLIENT,
+                prenoms:user.PRENOMS_CLIENT,
+                fullname:user.NOM_CLIENT+" "+user.PRENOMS_CLIENT,
+                sexe:user.SEXE,
+                tel1:user.TELEPHONE,
+                tel2:user.TELEPHONE_1,
+                adressePostale:user.ADRESSE_POSTALE,
+                profession:user.PROFESSION,
+                civilite:user.CIVILITE,
+                nationalite:user.NATIONALITE,
+                situationMatrimoniale:user.SITUATION_MATRIMONIALE,
+                typeClient:user.TYPE_CLIENT,
+                codeBank:user.CODE_BANQUE,
+                codeAgence:user.CODE_AGENCE,
+                numdecompte:user.NUMERO_DE_COMPTE,
+                cleRIB:user.CLE_RIB,
+                date_debut:user.DATE_DEBUT,
 
-  for(let i=0;i<=nombre;i++){
-    let pol=defaultPolices[Math.floor(Math.random()*defaultPolices.length)];
-    police[i]= {
-    Nom_police:pol.nom,
-    No_police:getNumeroPolice(),
-    type:pol.type,
-    owner:dummyUser.password,
-    createdAt:moment()._d,
-    dateEffet:moment().add(getmonthtoAdd(),'months')._d,
-    dateFinEffet:moment().add(getmonthtoAdd(),'years')._d,
-    description:faker.lorem.paragraph(),
-    resultat:{beneficiaires:pol.beneficiaires}
-    };
+              }
+          });
+      }else{
+        //console.log(user.IDE_CLIENT_UNIQUE+" existe deja");
+        return;
+      }
+    }
   }
-  return police;
-}
-const polices=getPolices(10);
-//juskqu'a ce kon ait les vrai donnees on va vider la collection polices
-Polices.remove({});
-polices.map((popo)=>Polices.insert(popo));
+});
+
 
 //=======================================
 /*FIN CONFIGURATION */
@@ -163,35 +145,6 @@ polices.map((popo)=>Polices.insert(popo));
     return Admins.find({});
   });
 
-  Meteor.publish('agences',()=>{
-    return Agences.find({});
-  });
-  //Polices d'assurance
-  //on a juste besoin du nom de la police, du nombre de benefiaires et des dates de mise en effet et d'expiration,description
- const contratpubF={
-   type:1,
-   Nom_police:1,
-   dateEffet:1
- };
-  Meteor.publish('getContrat',(filter,pageSkip=0)=>{
-    switch(SVGFilterPrimitiveStandardAttributes){
-      case '':
-      return;
-      default:
-      return Polices.find()
-    }
 
-  });
-//settings--------
-  const getSetting=(filter)=>{
-    const query={};
-    switch(filter){
-      case 'TERMINAL':
-      break;
-      case 'EVERYONE':
-      break;
-    }
-    return Settings.find(query,{limit:10});
-  };
-  Meteor.publish('settings',getSetting);
+ // Meteor.publish('settings',getSetting);
 }

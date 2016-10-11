@@ -1,6 +1,10 @@
 import {menuAdmin,adminLogin} from './ui-nav-actions';
 import {timerofadmin} from '../reducers/admin-reducer';
+import {deconnection as decouser} from './ui-nav-actions';
 
+/*
+Se rappeler de stocker dans la base le temps de connection de chaque administrateur 
+*/
 export const CONNECTION='CONNECTION';
 export function connection(nom,password,time){
 	return{
@@ -13,12 +17,18 @@ export function connection(nom,password,time){
 
 export const DECONNECTION='DECONNECTION';
 export function deconnection(decotime){
-	return{
-		type:DECONNECTION,
-		decotime
+	let admin=getState().admin;
+	console.log(admin);
+	//dispatch une ecriture sur mongodb
+	return(dispatch,getState)=>{
+		dispatch({type:DECONNECTION,decotime});
+		dispatch(decouser('home'));
+		
 	}
 }
-
+function storeAdmin(nom,debutConect,endConect){
+	
+}
 export const LOGO_CLICKED='LOGO_CLICKED';
 export function logoclicked(){
 	return(dispatch,getState)=>{

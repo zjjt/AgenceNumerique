@@ -26,10 +26,15 @@ export default function adminReducer(state=initialState,action){
 		case actions.DECONNECTION:
 			return{
 				...state,
-				nom:'',
-				password:'',
-				deconexiontime:action.decotime,
-				connected:false
+					nom:'',
+					password:'',
+					conexiontime:'',
+					deconexiontime:'',
+					countclick:0,
+					connected:false,
+					nomoclicks:false,
+					timerStatus:'Stopped',
+					loginTimer:0
 			};
 		case actions.LOGO_CLICKED:
 			return{

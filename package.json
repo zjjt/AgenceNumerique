@@ -5,7 +5,13 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "apollo-client": "^0.4.20",
+    "apollo-server": "^0.3.2",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
     "faker": "^3.1.0",
+    "graphql": "^0.7.1",
+    "graphql-tools": "^0.7.2",
     "meteor-node-stubs": "~0.2.0",
     "react": "^15.1.0",
     "react-addons-css-transition-group": "^15.1.0",
@@ -20,6 +26,9 @@
     "redux-logger": "^2.6.1",
     "redux-saga": "^0.10.5",
     "redux-thunk": "^2.1.0",
-    "rmc-date-picker": "^3.0.1"
+    "rmc-date-picker": "^3.0.1",
+    "sequelize": "^3.24.3",
+    "sqlite": "^2.2.0",
+    "tedious": "^1.14.0"
   }
 }

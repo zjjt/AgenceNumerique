@@ -11,13 +11,13 @@ const Langues={
                 title:'Sign in !',
                 naviBtnL:' Back',
                 naviBtnR:'Log in',
-                nomPlaceholder:'Enter your full name',
-                passPlaceholder:'Enter your password',
-                nomErrorVide:'Please enter your full name',
-                passErrorVide:'Please enter your password',
-                passErrorLength:'The password must be 6 characters long',
+                nomPlaceholder:'Enter your ID',
+                passPlaceholder:'Enter your birth date',
+                nomErrorVide:'Please enter your ID',
+                passErrorVide:'Please enter your birth date',
+                passErrorLength:'The your birth date must be 10 characters long',
                 nomServError:'This user does not exist in our database',
-                passServError:'Password incorrect'
+                passServError:'birth date incorrect'
             },
             AdminLogin:{
                 title:'Welcome admin',
@@ -35,6 +35,7 @@ const Langues={
                 menuBtnL1:'Settings',
                 menuBtnR1:'Activity log',
                 naviBtnR:'Next ',
+                naviBtnL:' Quit',
                 canGoNext:'Please choose an option amongst those listed below'
             },
                MenuUser:{
@@ -75,18 +76,18 @@ const Langues={
                 title:'Connectez vous !',
                 naviBtnL:' Retour',
                 naviBtnR:'Se connecter ',
-                nomPlaceholder:'Entrez votre nom',
-                passPlaceholder:'Entrez votre mot de passe',
-                nomErrorVide:'N\'oubliez pas d\'entrer votre nom',
-                passErrorVide:'N\'oubliez pas d\'entrer votre mot de passe',
-                passErrorLength:'Le mot de passe doit être de 6 caractères',
-                nomServError:'Ce souscripteur  n\'existe pas',
-                passServError:'Mot de passe incorrecte'
+                nomPlaceholder:'Entrez votre Identifiant',
+                passPlaceholder:'Entrez votre date de naissance',
+                nomErrorVide:'N\'oubliez pas d\'entrer votre Identifiant',
+                passErrorVide:'N\'oubliez pas d\'entrer votre date de naissance',
+                passErrorLength:'La date de naissance doit être de 10 caractères',
+                nomServError:'Ce souscripteur n\'existe pas',
+                passServError:'Date de naissance incorrecte'
             },
             AdminLogin:{
                 title:'Bienvenue administrateur',
-                naviBtnL:'Quitter',
-                naviBtnR:'Valider',
+                naviBtnL:' Quitter',
+                naviBtnR:'Valider ',
                 nomErrorVide:'N\'oubliez pas d\'entrer votre nom',
                 passErrorVide:'N\'oubliez pas d\'entrer votre mot de passe',
                 nomPlaceholder:'Entrez votre nom',
@@ -100,6 +101,7 @@ const Langues={
                 menuBtnL1:'Réglages',
                 menuBtnR1:'Rapport d\'activité',
                 naviBtnR:'Suivant ',
+                naviBtnL:' Quitter',
                 canGoNext:'Veuillez choisir une option parmis celles citées ci-dessous.'
                 
             },

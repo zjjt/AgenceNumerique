@@ -1,7 +1,7 @@
 import {createStore,applyMiddleware,compose} from 'redux';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
-import rootReducer from './rootReducer';
+import {client,rootReducer} from './rootReducer';
 import createSagaMiddleware from 'redux-saga';
 import {runTimer} from './sagas/adminTimerSaga';
 import {loadTranslations,setLocale,syncTranslationWithStore} from 'react-redux-i18n';
@@ -10,7 +10,7 @@ import Langues from '../api/languages';
 import frenchLocale from '../api/momentjsConfig';
 
 const sagaMiddleware=createSagaMiddleware();
-const middleware=[thunk,sagaMiddleware];
+const middleware=[thunk,sagaMiddleware,client.middleware()];
 let devtools;
 
 if(process.env.NODE_ENV==='development'){

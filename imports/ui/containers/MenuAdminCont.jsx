@@ -62,10 +62,10 @@ class MenuAdminCont extends Component {
 				<Footer
 					onClickRetour={()=>{}}
 					onClickNext={()=>chosenMenu!=='none'?dispatch(choixVisite('admincontent')):Bert.alert(I18n.t('application.MenuAdmin.canGoNext'), 'warning', 'fixed-top', 'fa-frown-o')}
-					onClickDeco={()=>{}}
-					isVisiblePrev={false}
+					onClickDeco={()=>dispatch()}
+					isVisiblePrev={true}
 					isVisibleNext={true}
-					isVisibleDeco={true}
+					isVisibleDeco={false}
 					textInfo={'www.groupesnsia.com'}
 					textNext={I18n.t('application.MenuAdmin.naviBtnR')}
 					textPrev={''}

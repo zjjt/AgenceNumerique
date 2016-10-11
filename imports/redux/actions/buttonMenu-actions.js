@@ -56,6 +56,21 @@ export function clickOnMenu(menu,pageOuMenuExist){
                         endmenu:'none'
                     } 
                     case "MenuAdmin":
+                         if(menu==='menuBtnL1'){
+                             endmenu='REGLAGES_TERMINAL';
+                             console.log(endmenu);
+                            return{
+                                type:CHOSEN_MENU,
+                                endmenu
+                            };
+                         }else if(menu==='menuBtnL2'){
+                             endmenu='RAPPORT_ACTIVITE';
+                             console.log(endmenu);
+                            return{
+                                type:CHOSEN_MENU,
+                                endmenu
+                            };
+                         }
                  default:
                     return{
                         type:CHOSEN_MENU,
